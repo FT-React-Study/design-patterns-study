@@ -1,5 +1,5 @@
 import type { SyntheticEvent } from "react";
-import type { Observer } from "../class/observer";
+import type { Observer } from "./observer";
 
 interface LogEntry {
     timestamp: Date;
