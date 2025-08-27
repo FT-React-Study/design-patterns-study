@@ -1,4 +1,4 @@
-# 개요
+# HOC 패턴이란?
 
  Higher Order Component (고차 컴포넌트) 패턴은 *컴포넌트*를 인자로 받아 *새로운 컴포넌트*를 반환하는 방식의 리액트 디자인 패턴입니다. 여기서 컴포넌트는 함수형 뿐만 아니라 클래스형 컴포넌트도 포함입니다. HOC 의 특징은 Wrapper 함수가 JSX 를 리턴하는 것이 아니라 *JSX 를 리턴하는 함수*를 리턴하는 것 입니다.
 
@@ -54,7 +54,9 @@ export function withLoader<P extends object>(Wrapped: React.ComponentType<P>) {
   };
   return withLoaderHOC;
 }
+
 /////////////
+
 import { withAuth, withLoader } from "../../shared";
 
 type ProfileProps = {
@@ -83,6 +85,8 @@ export const AuthenticatedProfile = withLoader(withAuth(Profile));
 ## Hooks 는 대체 할 수 없는 부분
 
  HOC 는 공통된 로직 재사용이라는 점에서 커스텀 훅을 만들어 사용하는 것과 목적에 유사한 점이 많고, 실제로 많은 부분에서 커스텀 훅으로 대체 되었습니다. 하지만, HOC 가 아직도 남아있는 것은 커스텀 훅이 HOC를 완전히 대체 할 수는 없기 때문입니다. 디자인 패턴 적으로도 차이가 있지만, 기능적으로 차이가 많이 납니다. 구현상 완전 반대 상황이기 때문이죠.
+
+![HOC 는 공통 로직을 사용 컴포넌트의 외부에서 제공하기 때문에 사용 컴포넌트는 공통 로직을 접근, 사용 할 수 없습니다. 하지만 커스텀 훅 같은 경우에는 사용 컴포넌트의 내부 상태나 props 를 커스텀 훅에 제공해 그 로직에 따른 결과값을 리턴 받아 직접 사용합니다.](attachment:49242b4c-3a9e-4c7a-a304-2a08a2ed3e39:image.png)
 
 HOC 는 공통 로직을 사용 컴포넌트의 외부에서 제공하기 때문에 사용 컴포넌트는 공통 로직을 접근, 사용 할 수 없습니다. 하지만 커스텀 훅 같은 경우에는 사용 컴포넌트의 내부 상태나 props 를 커스텀 훅에 제공해 그 로직에 따른 결과값을 리턴 받아 직접 사용합니다.
 
