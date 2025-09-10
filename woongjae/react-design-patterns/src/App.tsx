@@ -1,9 +1,9 @@
 import { useState, useEffect, type SyntheticEvent } from 'react'
-import reactLogo from './assets/react.svg'
+import reactLogo from '@/assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { ObservableEvent, EventObserver } from './shared/class/observer'
-import { Logger } from './shared/utils/logger'
+import { EventObserver, Logger, ObservableEvent } from '@/shared';
+import { AuthenticatedProfile } from '@/feature';
 
 // 전역 이벤트 옵저버블 생성
 const globalEventObservable = new ObservableEvent<SyntheticEvent>();
@@ -40,8 +40,7 @@ function App() {
   };
 
   return (
-    <div onClick={handleEvent} onKeyDown={handleEvent} onChange={handleEvent}>
-      <div>
+    <div onClick={handleEvent} onKeyDown={handleEvent} onChange={handleEvent}><div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -52,6 +51,12 @@ function App() {
       
       <h1>디자인 패턴 실습: Observer Pattern + Logger</h1>
       
+      <AuthenticatedProfile user={{
+        id: '1',
+        name: 'John Doe',
+        email: 'john.doe@example.com'
+      }} />
+
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
